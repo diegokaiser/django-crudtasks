@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <strong>Tasks</strong>
+    {% for task in tasks %}
+    <ul>
+        <li>
+            <a href="{% url 'task_detail' task.id %}">
+                {% if task.priority == True %}
+                    {% if task.dateCompleted != Null %}
+                        <u>{{task.title}}</u>
+                    {% else %}}
+                        <strong>{{task.title}}</strong>
+                    {% endif %}
+                    Prioridad alta
+                {% else %}
+                    {% if task.dateCompleted != Null %}
+                        <u>{{task.title}}</u>
+                    {% else %}}
+                        {{task.title}}
+                    {% endif %}
+                    Prioridad baja
+                {% endif %}
+                {{task.createdAt}}
+            </a>
+        </li>
+    </ul>
+    {% endfor %}
+{% endblock %}
